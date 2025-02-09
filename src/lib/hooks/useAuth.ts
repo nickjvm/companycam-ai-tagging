@@ -5,17 +5,10 @@ import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import { deletePhotoTags } from "@/utils/indexedDB";
 
-const isLocal = process.env.NODE_ENV === "development";
-const AUTH_URL = isLocal
-  ? "/api/oauth/authorize"
-  : "https://app.companycam.com/oauth/authorize";
-
-const TOKEN_URL = isLocal
-  ? "/api/oauth/token"
-  : "https://app.companycam.com/oauth/token";
-
-const CLIENT_ID = process.env.NEXT_PUBLIC_COMPANYCAM_CLIENT_ID;
-const REDIRECT_URI = process.env.NEXT_PUBLIC_COMPANYCAM_REDIRECT_URI;
+const AUTH_URL = process.env.NEXT_PUBLIC_AUTH_URL!;
+const TOKEN_URL = process.env.NEXT_PUBLIC_TOKEN_URL!;
+const CLIENT_ID = process.env.NEXT_PUBLIC_OAUTH_CLIENT_ID;
+const REDIRECT_URI = process.env.NEXT_PUBLIC_OAUTH_REDIRECT_URI;
 
 export function useAuth() {
   const [token, setToken] = useState<string | null>(null);
